@@ -1,0 +1,26 @@
+$grid__helperSize: 50;
+@mixin create-helpers($grid__helperSize, $mod) {
+  @if ($mod == '') {
+    @for $i from 1 through $grid__helperSize {
+      .m-#{$i} {
+        margin: $i * 1px;
+      }
+      .p-#{$i} {
+        padding: $i * 1px;
+      }
+    }
+  } @else {
+    @for $i from 1 through $grid__helperSize {
+      .m-#{$mod}-#{$i} {
+        margin-#{$mod}: $i * 1px;
+      }
+      .p-#{$mod}-#{$i} {
+        padding-#{$mod}: $i * 1px;
+      }
+    }
+  }
+}
+$map-helper: ('left', 'right', 'top', 'bottom', '');
+@each $mod in $map-helper {
+  @include create-helpers($grid__helperSize, $mod);
+}

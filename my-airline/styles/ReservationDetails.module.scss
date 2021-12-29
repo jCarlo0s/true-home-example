@@ -1,0 +1,68 @@
+@import "variables";
+
+.reservationdetails {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 6px;
+  background-color: $secondary-bg-color;
+  margin: 10px 0px;
+  &__delete {
+    position: absolute;
+    right: 20px;
+    font-size: 12px;
+  }
+  &__head {
+    display: flex;
+    align-items: center;
+    &__icon {
+      margin-right: 10px;
+    }
+    &__text {
+      font-size: 20px;
+      font-weight: 300;
+    }
+  }
+  &__content {
+    &__item {
+      display: flex;
+      &__label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-right: 5px;
+      }
+      &__text {
+        font-weight: 300;
+        font-size: 14px;
+      }
+    }
+    &__detail {
+      display: flex;
+      align-items: center;
+      background-color: $primary-bg-color;
+      padding: 0px 10px;
+      border-radius: 10px;
+      &__schedule {
+        display: flex;
+        &__icon {
+          margin: 0px 5px;
+        }
+      }
+      > p {
+        margin-right: 10px;
+      }
+    }
+    &__price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &__passengers {
+        font-size: 14px;
+      }
+      &__amount {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+}

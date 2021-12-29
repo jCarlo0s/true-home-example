@@ -1,0 +1,51 @@
+// breakpoints
+$grid__xl: 1280;
+$grid__lg: 1024;
+$grid__md: 768;
+$grid__sm: 425;
+$grid__xs: 320;
+$grid__cols: 12;
+
+@mixin create-cols($modifier, $grid__cols, $breakpoint) {
+  @include create-mq($breakpoint) {
+    @for $i from 1 through $grid__cols {
+      .col#{$modifier}-#{$i} {
+        flex-basis: calc(100 / ($grid__cols / $i) ) * 1%;
+      }
+    }
+  }
+}
+
+@mixin create-mq($breakpoint) {
+  @if ($breakpoint == 0) {
+    @content
+  } @else {
+    @media screen and (min-width: $breakpoint * 1px) {
+      @content
+    }
+  }
+}
+
+@mixin mobile {
+  @media only screen and (min-width: $grid__sm * 1px) {
+    @content
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $grid__md * 1px) {
+    @content
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $grid__lg * 1px) {
+    @content
+  }
+}
+
+@mixin large {
+  @media only screen and (min-width: $grid__xl * 1px) {
+    @content
+  }
+}

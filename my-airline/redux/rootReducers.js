@@ -1,11 +1,9 @@
 import { combineReducers } from "redux";
 // Reducers
-import main from "./Main";
-import reservation from "./Reservation";
+import main from "./Main/reducer";
 
 const rootReducers = combineReducers({
     main,
-    reservation,
 })
 
 export default rootReducers

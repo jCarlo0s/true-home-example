@@ -1,0 +1,20 @@
+@import "variables";
+
+.button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  border: 0px;
+  &__disabled {
+    background-color: $disabled-color;
+  }
+  &__active {
+    background-color: $selected-color;
+  }
+  &__success {
+    background-color: $success-color;
+  }
+}
