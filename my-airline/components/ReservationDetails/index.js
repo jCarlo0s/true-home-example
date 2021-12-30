@@ -4,11 +4,27 @@ import PlaneIcon from '../../public/icons/plane.png';
 import CalendarIcon from '../../public/icons/Calendar.png';
 import WachIcon from '../../public/icons/Watch.png';
 import Image from "next/image";
+import { useState } from "react";
+import { connect } from "react-redux";
+import { removeReservation } from "../../redux/Main/actions";
 
-const ReservationDetails = ({ data }) => {
+// components
+import Modal from "../Modal";
+
+const ReservationDetails = ({ data, removeReservation }) => {
+    const [deleteElementModal, setDeleteElementModal] = useState(false);
+
     return (
         <div className={styles.reservationdetails}>
-            <div className={`line-button ${styles.reservationdetails__delete}`}>
+            {(deleteElementModal) ? <Modal
+                title="Remover Reservación"
+                body="¿ Estas seguro/a que deseas eliminar tu reservación ?"
+                primaryLabel="Cancelar"
+                secondaryLabel="Si, eliminar"
+                primaryClick={() => { setDeleteElementModal(false) }}
+                secondaryClick={() => { removeReservation(data.pk) }}
+            /> : null}
+            <div onClick={() => {setDeleteElementModal(true)}} className={`line-button pointer ${styles.reservationdetails__delete}`}>
                 Cancelar
             </div>
             <div className={styles.reservationdetails__head}>
@@ -74,7 +90,12 @@ const ReservationDetails = ({ data }) => {
 }
 
 ReservationDetails.prototype = {
-    data: propTypes.object.isRequired
+    data: propTypes.object.isRequired,
+    deleteClick: propTypes.func.isRequired,
 }
 
-export default ReservationDetails;
+const mapDispatchToProps = {
+    removeReservation,
+}
+
+export default connect(null, mapDispatchToProps)(ReservationDetails);

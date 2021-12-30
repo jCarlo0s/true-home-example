@@ -2,8 +2,6 @@
 @import "mixins";
 @import 'helpers';
 
-
-
 // font roboto
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Zen+Kaku+Gothic+Antique:wght@300;400;500;700;900&display=swap');
 // font poppins
@@ -52,6 +50,24 @@ $map-grid: ('-xs': $grid__xs, '-sm': $grid__sm, '-md': $grid__md, '-lg': $grid__
   @include create-cols($mod, $grid__cols, $breakpoint);
 }
 
+.md-hide {
+  @include tablet {
+    display: none;
+  }
+}
+
+.sm-hide {
+  @include mobile {
+    display: none;
+  }
+  @include mobile-xs {
+    display: none;
+  }
+  @include tablet {
+    display: block;
+  }
+}
+
 .font__poppins {
   font-family: Poppins;
 }
@@ -80,6 +96,10 @@ $map-grid: ('-xs': $grid__xs, '-sm': $grid__sm, '-md': $grid__md, '-lg': $grid__
   justify-content: space-between;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .line-button {
   color: $danger-color;
   text-decoration: underline;
@@ -88,5 +108,23 @@ $map-grid: ('-xs': $grid__xs, '-sm': $grid__sm, '-md': $grid__md, '-lg': $grid__
 
 .font-light {
   font-weight: 200;
+}
+
+.font-semibold {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+.text-xl {
+  font-size: 20px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: $secondary-bg-color;
 }
 

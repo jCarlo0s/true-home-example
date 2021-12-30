@@ -77,7 +77,7 @@ const Home = ({cities, getAvailability, availability, haveReservations, setReser
                     handleDestinationOnChange={destinationSelection}
                     cities={cities}/>
             </div>
-            <div className="container--row">
+            <div className="container--row m-bottom-90">
                 {results}
             </div>
             {(haveReservations) ? <StatusBar buttonLabel="Continuar" onClick={() => router.push('/details')}/> : null}

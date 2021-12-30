@@ -2,7 +2,8 @@ import {
     SET_CITIES,
     GET_AVAILABILITY,
     SET_RESERVATION,
-    CLEAR_RESERVATIONS
+    CLEAR_RESERVATIONS,
+    REMOVE_RESERVATION
 } from "../types";
 
 /**
@@ -48,5 +49,17 @@ export function setReservation(payload) {
 export function clearReservations() {
     return {
         type: CLEAR_RESERVATIONS,
+    }
+}
+
+/**
+ * Remove a single reservation by pk
+ * @param payload
+ * @return {{payload, type: string}}
+ */
+export function removeReservation(payload) {
+    return {
+        type: REMOVE_RESERVATION,
+        payload
     }
 }

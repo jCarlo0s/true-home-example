@@ -1,4 +1,4 @@
-$grid__helperSize: 50;
+$grid__helperSize: 150;
 @mixin create-helpers($grid__helperSize, $mod) {
   @if ($mod == '') {
     @for $i from 1 through $grid__helperSize {

@@ -3,6 +3,7 @@ import {
     SET_AVAILABILITY,
     SET_RESERVATION,
     CLEAR_RESERVATIONS,
+    REMOVE_RESERVATION
 } from "../types";
 import {HYDRATE} from 'next-redux-wrapper';
 
@@ -41,6 +42,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 availability: [],
                 reservations: []
+            }
+        case REMOVE_RESERVATION:
+            const reducedReservations = state.reservations.filter(reservation => reservation.pk != action.payload)
+            return {
+                ...state,
+                reservations: reducedReservations
             }
         default:
             return {...state}

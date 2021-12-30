@@ -8,7 +8,7 @@
   min-height: 100px;
   top: 10%;
   left: 10%;
-  background-color: $primary-bg-color;
+  background-color: #F2F2F2;
   @include tablet {
     width: 60%;
     left: 22%;
@@ -28,7 +28,7 @@
   }
   &__body {
     text-align: center;
-    padding: 25px 10px;
+    padding: 15px 20px;
     font-family: Roboto;
     font-weight: 300;
     font-size: 17px;

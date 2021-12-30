@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { useState } from "react";
-import { selectReservations } from "../../redux/Main/selectors";
+import { useState, useEffect } from "react";
+import { selectReservations, selectTotal } from "../../redux/Main/selectors";
 import { createStructuredSelector } from "reselect";
 import { clearReservations } from "../../redux/Main/actions";
 import BackIcon from '../../public/icons/Back.png';
@@ -13,11 +13,21 @@ import Modal from "../../components/Modal";
 import ReservationDetails from "../../components/ReservationDetails";
 import StatusBar from "../../components/StatusBar";
 import PersonalInformation from "../../components/PersonalInformation";
+import Button from "../../components/Button";
 
-const Details = ({ reservations, clearReservations }) => {
+const Details = ({ reservations, clearReservations, total }) => {
     const [confirmClearAction, setConfirmClearAction] = useState(false)
     const [confirmReservation, setConfirmReservation] = useState(false)
+    const [thanksyouModal, setthanksyouModal] = useState(false);
+
     const router = useRouter()
+
+    useEffect(() => {
+        if (reservations.length == 0) {
+            clearReservations()
+            router.push('/')
+        }
+    })
 
     const primaryModalAction = () => {
         setConfirmClearAction(false);
@@ -25,6 +35,17 @@ const Details = ({ reservations, clearReservations }) => {
 
     const clear = () => {
         clearReservations()
+        router.push('/')
+    }
+
+    const successReservation = () => {
+        setConfirmReservation(false)
+        setthanksyouModal(true)
+    }
+
+    const reservationAccept = () => {
+        setthanksyouModal(false);
+        clearReservations();
         router.push('/')
     }
 
@@ -56,24 +77,44 @@ const Details = ({ reservations, clearReservations }) => {
                     </div>
                 </div>
             </div>
-            <div className="container--row">
-                {details}
+            <div className="container--row m-bottom-90">
+                <div className="col-xs-12 col-sm-12 col-md-6">
+                    {details}
+                </div>
+                <div className="col-md-6 p-10 sm-hide">
+                    <div className="card">
+                        <p className="text-xl">Completa tus datos y finaliza tu reservación</p>
+                        <PersonalInformation handleSubmit={() => { successReservation() }}/>
+                        <div className="flex flex-column justify-center items-center m-top-15 m-bottom-15">
+                            <p className="m-1">TOTAL</p>
+                            <p className="m-1 font-bold text-xl">$ {total} MXN</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             {(confirmClearAction) ? <Modal
-                body="Estas seguro/a que deseas eliminar todas las reservaciones que seleccionaste ?"
-                title="Confirmación"
+                body="¿ Estas seguro/a que deseas eliminar todas las reservaciones que seleccionaste ?"
+                title="Eliminar Todo"
                 primaryLabel="Cancelar"
                 secondaryLabel="Si estoy seguro/a"
                 primaryClick={primaryModalAction}
                 secondaryClick={clear}/> : null}
-            <div>
+            {(thanksyouModal) ? <Modal
+                title="¡Reserva Exitosa!"
+                body="Tu reservación fue realizada con éxito, pronto recibiras un correo de confirmación"
+                primaryLabel="Aceptar"
+                primaryClick={reservationAccept}
+            /> : null}
+            <div className="md-hide">
                 {(confirmReservation) ? (
                     <Modal
                         primaryLabel="Confirmar"
                         secondaryLabel="Cancelar"
-                        buttonState="success"
+                        buttonState="disabled"
                         secondaryClick={() => { setConfirmReservation(false) }}
-                        body={<PersonalInformation />} title="Confirmación"/>
+                        body={<PersonalInformation handleSubmit={() => { successReservation() }} />}
+                        title="Confirmación"
+                    />
                 ) : null}
                 <StatusBar buttonLabel="Reservar" onClick={() => { setConfirmReservation(true) }} />
             </div>
@@ -82,7 +123,8 @@ const Details = ({ reservations, clearReservations }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    reservations: selectReservations
+    reservations: selectReservations,
+    total: selectTotal
 })
 
 const mapDispatchToProps = {

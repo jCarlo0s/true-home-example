@@ -20,7 +20,7 @@ const Button = ({ label, state, handleClick }) => {
     }
 
     return (
-        <button onClick={handleClick} className={`${styles.button} ${extraClasses}`}>
+        <button onClick={(state != 'disabled') ? handleClick : null} className={`${styles.button} ${extraClasses}`}>
             {label}
         </button>
     )
