@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import { selectReservations, selectTotal } from "../../redux/Main/selectors";
 import { createStructuredSelector } from "reselect";
-import { clearReservations } from "../../redux/Main/actions";
+import { clearReservations, clearAvailabilityList } from "../../redux/Main/actions";
 import BackIcon from '../../public/icons/Back.png';
 import Image from "next/image";
 import Head from "next/head";
@@ -13,9 +13,8 @@ import Modal from "../../components/Modal";
 import ReservationDetails from "../../components/ReservationDetails";
 import StatusBar from "../../components/StatusBar";
 import PersonalInformation from "../../components/PersonalInformation";
-import Button from "../../components/Button";
 
-const Details = ({ reservations, clearReservations, total }) => {
+const Details = ({ reservations, clearReservations, total, clearAvailabilityList }) => {
     const [confirmClearAction, setConfirmClearAction] = useState(false)
     const [confirmReservation, setConfirmReservation] = useState(false)
     const [thanksyouModal, setthanksyouModal] = useState(false);
@@ -59,7 +58,7 @@ const Details = ({ reservations, clearReservations, total }) => {
             </Head>
             <div className="container--row">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div className="m-top-10 pointer flex" onClick={() => router.push('/')}>
+                    <div className="m-top-10 pointer flex" onClick={() => { clearAvailabilityList();router.push('/')}}>
                         <div className="flex items-center justify-center m-right-5">
                             <Image src={BackIcon} width={15} height={15} />
                         </div>
@@ -129,6 +128,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
     clearReservations,
+    clearAvailabilityList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);

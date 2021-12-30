@@ -3,7 +3,8 @@ import {
     GET_AVAILABILITY,
     SET_RESERVATION,
     CLEAR_RESERVATIONS,
-    REMOVE_RESERVATION
+    REMOVE_RESERVATION,
+    CLEAR_AVAILABILITY
 } from "../types";
 
 /**
@@ -27,6 +28,16 @@ export function getAvailability(payload) {
     return {
         type: GET_AVAILABILITY,
         payload,
+    }
+}
+
+/**
+ * Clear the availability results
+ * @return {{type: string}}
+ */
+export function clearAvailabilityList() {
+    return {
+        type: CLEAR_AVAILABILITY
     }
 }
 

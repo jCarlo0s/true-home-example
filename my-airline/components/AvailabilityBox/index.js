@@ -6,8 +6,9 @@ import WatchIcon from '../../public/icons/Watch.png';
 import styles from '../../styles/AvailabilityBox.module.scss';
 import Button from "../Button";
 import { useState } from "react";
+import {toast} from "react-toastify";
 
-const AvailabilityBox = ({ data, handleReservation, selected = false }) => {
+const AvailabilityBox = ({ data, handleReservation, selected = false, origin, destination }) => {
     const [buttonState, setButtonState] = useState('disabled')
     const [passengerNumber, setPassengerNumber] = useState('')
     const [reservationStatus, setReservationStatus] = useState(selected)
@@ -24,6 +25,12 @@ const AvailabilityBox = ({ data, handleReservation, selected = false }) => {
 
     const reservationButtonClick = () => {
         if (passengerNumber == '') return;
+        if (origin == '' || destination == '') {
+            toast.error('Para hacer la reservacion debes seleccionar origen y un destino', {
+                theme: 'colored'
+            });
+            return ;
+        }
         const params = {
             ...data,
             passengerNumber,

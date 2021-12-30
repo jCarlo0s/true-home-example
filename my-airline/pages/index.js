@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useState } from "react";
 import { createStructuredSelector } from "reselect";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import { getAvailability, setReservation } from "../redux/Main/actions";
 import {
     selectCities,
@@ -33,10 +34,6 @@ const Home = ({cities, getAvailability, availability, haveReservations, setReser
     const handleReservation = (data) => {
         const originData = cities.filter(city => city.pk == origin);
         const destinationData = cities.filter(city => city.pk == destination);
-
-        console.log(originData)
-        console.log(destinationData)
-
         const reservationInfo = {
             ...data,
             origin: originData[0].name,
@@ -52,6 +49,8 @@ const Home = ({cities, getAvailability, availability, haveReservations, setReser
 
     const results = availability.map(record => (
         <AvailabilityBox
+            origin={origin}
+            destination={destination}
             selected={availabilityRecordSelected(record.pk)}
             handleReservation={handleReservation}
             key={record.pk}

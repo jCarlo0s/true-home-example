@@ -4,9 +4,11 @@ import {
   SET_CITIES
 } from "../redux/types";
 import { wrapper } from "../redux/store";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyApp = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />
+  return <div><ToastContainer /><Component {...pageProps} /></div>
 }
 
 // fetching the destination list from the api
