@@ -22,7 +22,6 @@ const Home = ({cities, getAvailability, availability, haveReservations, setReser
     const [origin, setOrigin] = useState('')
     const [destination, setDestination] = useState('')
     const router = useRouter()
-    console.log(cities)
     const destinationSelection = (value) => {
         setDestination(value)
         getAvailability(value)

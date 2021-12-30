@@ -15,7 +15,6 @@ const MyApp = ({ Component, pageProps }) => {
 MyApp.getInitialProps = wrapper.getInitialAppProps(store => async context => {
   try {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_HOST}/api/cities`)
-    console.log(response.data)
     store.dispatch({type: SET_CITIES, payload: response.data});
   } catch (error) {
     console.log(error);
