@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 
-const Select = ({ defaultOption, options, elementClass, onChange, disabled = false }) => {
+const Select = ({ defaultOption, options = [], elementClass, onChange, disabled = false }) => {
     const renderOptions = options.map(option => <option key={option.pk} value={option.pk}>{option.name}</option>)
     return (
         <select disabled={disabled} className={elementClass} onChange={(e) => { onChange(e.target.value) }}>
