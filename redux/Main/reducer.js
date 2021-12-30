@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
         case SET_CITIES:
             return {
                 ...state,
-                cities: action.payload,
+                cities: action.payload.cities
             }
         case HYDRATE:
             return {
