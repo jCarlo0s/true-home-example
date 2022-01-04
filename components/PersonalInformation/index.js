@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Input from "../Form/input";
 import Button from "../Button";
-import {useState} from "react";
+import { useState } from "react";
 
 const PersonalInformation = ({ handleSubmit }) => {
     const [names, setNames] = useState('');

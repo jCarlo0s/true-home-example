@@ -26,7 +26,7 @@ const AvailabilityBox = ({ data, handleReservation, selected = false, origin, de
     const reservationButtonClick = () => {
         if (passengerNumber == '') return;
         if (origin == '' || destination == '') {
-            toast.error('Para hacer la reservacion debes seleccionar origen y un destino', {
+            toast.error('Para hacer la reservación debes seleccionar origen y un destino', {
                 theme: 'colored'
             });
             return ;
