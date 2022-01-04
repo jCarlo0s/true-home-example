@@ -64,7 +64,7 @@ const ReservationDetails = ({ data, removeReservation }) => {
                     <p className={styles.reservationdetails__content__item__text}>{data.destination}</p>
                 </div>
                 <div className={styles.reservationdetails__content__detail}>
-                    <p>Salida</p>
+                    <p>Llegada</p>
                     <div className={styles.reservationdetails__content__detail__schedule}>
                         <div className={styles.reservationdetails__content__detail__schedule__icon}>
                             <Image src={CalendarIcon} width={20} height={20} />
